@@ -8,8 +8,10 @@ readonly swappart=$(readlink -f /dev/disk/by-uuid/"$swapuuid")
 dd if=/dev/zero of="$swappart" bs=1M || echo "dd exit code $? is suppressed" 
 /sbin/mkswap -U "$swapuuid" "$swappart"
 
-dd if=/dev/zero of=/EMPTY bs=1M
-rm -f /EMPTY
+if [ ! "${PACKER_BUILDER_TYPE}" == "qemu" ]; then
+  dd if=/dev/zero of=/EMPTY bs=1M
+  rm -f /EMPTY
+fi
 # Block until the empty file has been removed, otherwise, Packer
 # will try to kill the box while the disk is still full and that's bad
 sync
