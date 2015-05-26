@@ -20,4 +20,4 @@ cat >> /etc/security/limits.conf <<EOF
 *        soft    nofile          8192
 EOF
 
-sed -i "s|^OPTIONS=.*|OPTIONS='--selinux-enabled -H unix://var/run/docker.sock -H tcp://0.0.0.0:2375 --insecure-registry=172.0.0.0/8'|" /etc/sysconfig/docker
+sed -i "s|^OPTIONS=.*|OPTIONS='--selinux-enabled -H unix://var/run/docker.sock -H tcp://0.0.0.0:2375 --insecure-registry=172.0.0.0/8 --log-level=warn'|" /etc/sysconfig/docker
