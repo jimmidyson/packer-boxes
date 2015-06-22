@@ -1,14 +1,6 @@
 #!/bin/bash
 
-cat >/etc/yum.repos.d/openshift-deps.repo <<EOF
-[openshift-deps]
-name=Openshift Dependencies - x86_64 software and updates
-baseurl=https://mirror.openshift.com/pub/openshift-v3/dependencies/centos7/x86_64/
-gpgcheck=0
-enabled=1
-EOF
-
-yum install -y docker docker-logrotate && rm -rf /var/cache/yum
+yum install -y http://cbs.centos.org/kojifiles/packages/docker/1.6.2/4.gitc3ca5bb.el7/x86_64/docker-1.6.2-4.gitc3ca5bb.el7.x86_64.rpm
 systemctl enable docker
 groupadd docker
 usermod -a -G docker vagrant
@@ -21,3 +13,5 @@ cat >> /etc/security/limits.conf <<EOF
 EOF
 
 sed -i "s|^OPTIONS=.*|OPTIONS='--selinux-enabled -H unix://var/run/docker.sock -H tcp://0.0.0.0:2375 --insecure-registry=172.0.0.0/8 --log-level=warn'|" /etc/sysconfig/docker
+
+sed -i "s|^DOCKER_STORAGE_OPTIONS=.*$|DOCKER_STORAGE_OPTIONS='-s devicemapper --storage-opt dm.fs=xfs --storage-opt dm.thinpooldev=/dev/mapper/root-docker--pool'|" /etc/sysconfig/docker-storage
