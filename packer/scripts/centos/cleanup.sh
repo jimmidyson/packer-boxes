@@ -15,3 +15,7 @@ for ndev in $(ls /etc/sysconfig/network-scripts/ifcfg-*); do
     sed -i '/^UUID/d' ${ndev}
   fi
 done
+
+if [ -f /etc/sysconfig/network-scripts/ifcfg-eth0 ]; then
+  echo DEVICE=eth0 >> /etc/sysconfig/network-scripts/ifcfg-eth0
+fi

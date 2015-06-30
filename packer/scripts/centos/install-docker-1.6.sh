@@ -1,10 +1,10 @@
 #!/bin/bash
 
-yum install -y cloud-utils-growpart http://cbs.centos.org/kojifiles/packages/docker/1.6.2/4.gitc3ca5bb.el7/x86_64/docker-1.6.2-4.gitc3ca5bb.el7.x86_64.rpm http://cbs.centos.org/kojifiles/packages/docker-storage-setup/0.5/3.el7.centos/noarch/docker-storage-setup-0.5-3.el7.centos.noarch.rpm
+# yum install -y docker-storage-setup
 systemctl enable docker
 groupadd docker
 usermod -a -G docker vagrant
-systemctl start docker-storage-setup
+# systemctl start docker-storage-setup
 
 cat >> /etc/security/limits.conf <<EOF
 *        hard    nproc           8192
