@@ -9,8 +9,8 @@ run packer to build the appropriate image, e.g.
 
     packer build -parallel=false centos-7.1-x86_64.json
 
-The `-parallel=false` flag is important as the configs build both VirtualBox & libvirt images
-- these cannot run concurrently, hence disabling parallel builds.
+The `-parallel=false` flag is important as the configs build both VirtualBox & libvirt images -
+these cannot run concurrently, hence disabling parallel builds.
 
 If you just want to build the libvirt base image you can run:
 
