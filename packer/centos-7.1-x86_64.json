@@ -75,7 +75,7 @@
       "scripts": [
         "scripts/common/sshd.sh",
         "scripts/common/vagrant.sh",
-        "scripts/centos/install-docker-1.6.sh",
+        "scripts/centos/install-docker.sh",
         "scripts/common/vmtools.sh",
         "scripts/centos/cleanup.sh",
         "scripts/common/minimize.sh"
